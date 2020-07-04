@@ -1,4 +1,4 @@
-package learn.springcloud.configclient;
+package learn.springcloud;
 
 import java.util.Date;
 import java.util.List;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
   
 
 @SpringBootApplication
-public class ConfigclientApplication {
+public class WebServicesEureakaRegisterApplication {
  
 	public static void main(String[] args) {
-		SpringApplication.run(ConfigclientApplication.class, args);
+		SpringApplication.run(WebServicesEureakaRegisterApplication.class, args);
 	}
 
 } 
