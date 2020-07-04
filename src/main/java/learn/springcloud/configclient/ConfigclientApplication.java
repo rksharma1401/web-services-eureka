@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
@@ -38,12 +37,11 @@ class ServiceInstanceRestController {
 			@PathVariable String applicationName) {
 		return this.discoveryClient.getInstances(applicationName);
 	}
-	@Value("#{servletContext.contextPath}")
-    private String servletContextPath;
+	 
 
-	@RequestMapping("/getUrl")
-	public String getUrl() {
-		return servletContextPath;
+	@RequestMapping("/getDate")
+	public String getDate() {
+		return new Date().toString();
 	}
   
 }
