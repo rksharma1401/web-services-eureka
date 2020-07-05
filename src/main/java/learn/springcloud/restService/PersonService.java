@@ -37,6 +37,8 @@ public class PersonService {
       }
       @RequestMapping(value = "/getPersonList", method = RequestMethod.GET)
       public List<Person> getAllPerson(){
+
+        System.out.println("called getAllPerson");
         return jdbcTemplate.query("SELECT * FROM person", new RowMapper<Person>(){
     
           public Person mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -54,6 +56,7 @@ public class PersonService {
       @RequestMapping(value = "/getPersonByName", method = RequestMethod.GET)
       public List<Person> getPersonByName(@RequestParam(value = "fname") String fname,
       @RequestParam(value = "lname") String lname){
+
             return jdbcTemplate.query("SELECT * FROM person where first_name='"+fname+"' and last_name='"+ lname+"'", new RowMapper<Person>(){
     
               public Person mapRow(ResultSet rs, int arg1) throws SQLException {
