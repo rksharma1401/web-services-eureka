@@ -1,4 +1,4 @@
-CREATE TABLE person(
+CREATE TABLE IF NOT EXISTS person(
   first_name  VARCHAR(150),
   last_name   VARCHAR(150),
   age         INTEGER,
