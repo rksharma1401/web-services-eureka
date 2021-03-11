@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import learn.springcloud.model.Person;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class PersonService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -25,6 +27,7 @@ public class PersonService {
     public int addPerson(@RequestBody  Person person){
         String sql = "INSERT INTO person(first_name, last_name, age, place) VALUES(?,?,?,?)";
         int result=1;
+        log.error("going to creat person {}",person);
         try{
             result= jdbcTemplate.update(sql, person.getFirstName(),
             person.getLastName(), person.getAge(), person.getPlace());
@@ -38,7 +41,7 @@ public class PersonService {
       @RequestMapping(value = "/getPersonList", method = RequestMethod.GET)
       public List<Person> getAllPerson(){
 
-        System.out.println("called getAllPerson");
+       log.error("called getAllPerson");
         return jdbcTemplate.query("SELECT * FROM person", new RowMapper<Person>(){
     
           public Person mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -56,7 +59,7 @@ public class PersonService {
       @RequestMapping(value = "/getPersonByName", method = RequestMethod.GET)
       public List<Person> getPersonByName(@RequestParam(value = "fname") String fname,
       @RequestParam(value = "lname") String lname){
-
+    	  log.error("getting person for name :- {}  {}",fname,lname);
             return jdbcTemplate.query("SELECT * FROM person where first_name='"+fname+"' and last_name='"+ lname+"'", new RowMapper<Person>(){
     
               public Person mapRow(ResultSet rs, int arg1) throws SQLException {
